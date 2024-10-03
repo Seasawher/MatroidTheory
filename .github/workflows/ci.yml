@@ -1,0 +1,28 @@
+# see: https://github.com/rami3l/plfl/blob/master/.github/workflows/ci.yml
+name: CI
+
+# https://docs.github.com/en/actions/using-jobs/using-concurrency#example-only-cancel-in-progress-jobs-or-runs-for-the-current-workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ubuntu_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: lean action
+        uses: leanprover/lean-action@v1
+        with:
+          build-args: "--log-level=error"
