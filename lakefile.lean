@@ -6,7 +6,8 @@ package "MatroidTheory" where
   leanOptions := #[
     ⟨`pp.unicode.fun, true⟩, -- pretty-prints `fun a ↦ b`
     ⟨`autoImplicit, false⟩,
-    ⟨`relaxedAutoImplicit, false⟩
+    ⟨`relaxedAutoImplicit, false⟩,
+    ⟨`linter.missingDocs, true⟩
   ]
   -- add any additional package configuration options here
 
